@@ -11,7 +11,7 @@ namespace Mixer.Base.Web
         //    "<!DOCTYPE html><html><body><h1 style=\"text-align:center;\">Logged In Successfully</h1><p style=\"text-align:center;\">You have been logged in, you may now close this webpage. You can visit my Github <a href='https://github.com/lumbridge'> here.</a></p></body></html>";
 
         private const string defaultSuccessResponse =
-            "<script>window.location.href = 'https://lumbridge.org/';</script>";
+            "<script>window.location.href = 'https://lumbridge.org/SuccessfulAuthentication';</script>";
 
         private string loginSuccessHtmlPageFilePath = null;
         private string OAuthTokenModel = null;

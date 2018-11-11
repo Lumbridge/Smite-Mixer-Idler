@@ -105,6 +105,8 @@
     <Compile Include="Commands\ExitSmiteMixerIdler.cs" />
     <Compile Include="Commands\HideWindowCommand.cs" />
     <Compile Include="Commands\ShowWindowCommand.cs" />
+    <Compile Include="Commands\ToggleStartup.cs" />
+    <Compile Include="Helpers\WindowsHelper.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
