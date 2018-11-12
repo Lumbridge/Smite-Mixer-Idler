@@ -47,33 +47,13 @@ namespace Smite.Mixer.Idler
             var reg = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
             var currentlyEnabledAtStartup = false;
 
-            if (reg != null)
+            try
             {
-                try
-                {
-                    currentlyEnabledAtStartup = reg.GetValue("SmiteMixerIdler") != null;
-
-                    if (currentlyEnabledAtStartup)
-                    {
-                        reg.DeleteValue("SmiteMixerIdler");
-                        MainIcon.CloseBalloon();
-                        MainIcon.ShowBalloonTip("Smite Mixer Idler", "Smite Mixer Idler will not launch with Windows.", BalloonIcon.Info);
-                    }
-                    else
-                    {
-                        reg.SetValue("SmiteMixerIdler", System.Reflection.Assembly.GetExecutingAssembly().Location);
-                        MainIcon.CloseBalloon();
-                        MainIcon.ShowBalloonTip("Smite Mixer Idler", "Smite Mixer Idler will launch with Windows.", BalloonIcon.Info);
-                    }
-                }
-                catch
-                {
-                    MainIcon.ShowBalloonTip("Smite Mixer Idler", "Failed to Get current launch with Windows parameter from Registry.", BalloonIcon.Error);
-                }
+                currentlyEnabledAtStartup = reg.GetValue("SmiteMixerIdler") != null;
             }
-            else
+            catch
             {
-                MainIcon.ShowBalloonTip("Smite Mixer Idler", "Couldn't access user registry.", BalloonIcon.Error);
+                // ignored
             }
 
             this.LaunchWithWindows.Text = currentlyEnabledAtStartup ? "True" : "False";

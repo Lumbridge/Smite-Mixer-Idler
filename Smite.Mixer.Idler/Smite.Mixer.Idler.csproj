@@ -106,7 +106,6 @@
     <Compile Include="Commands\HideWindowCommand.cs" />
     <Compile Include="Commands\ShowWindowCommand.cs" />
     <Compile Include="Commands\ToggleStartup.cs" />
-    <Compile Include="Helpers\WindowsHelper.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -151,6 +150,9 @@
       <Project>{02f84a37-6d69-4c70-ba93-345396f462a2}</Project>
       <Name>Mixer.Base</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
