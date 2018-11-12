@@ -15,7 +15,7 @@
             <!-- the data context of the context menu is the NotifyIcon itself (see more about this in DataBinding samples) -->
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="_Start Smite Mixer Idler at Startup"
+                    <MenuItem Header="_Start Smite Mixer Idler with Windows"
                               Command="{commands:ToggleStartup}"
                               CommandParameter="{Binding}">
                     </MenuItem>

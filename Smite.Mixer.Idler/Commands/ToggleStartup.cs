@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using Hardcodet.Wpf.TaskbarNotification;
 using Microsoft.Win32;
+using Smite.Mixer.Idler.Helpers;
 
 namespace Smite.Mixer.Idler.Commands
 {
@@ -12,37 +14,19 @@ namespace Smite.Mixer.Idler.Commands
     {
         public override void Execute(object parameter)
         {
-            var reg = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-            var x = parameter as TaskbarIcon;
-            var window = GetTaskbarWindow(x) as MainWindow;
+            var mainIcon = parameter as TaskbarIcon;
+            var mainWindow = GetTaskbarWindow(mainIcon) as MainWindow;
+            var menuitem = mainWindow?.MainIcon?.ContextMenu?.Items[0] as MenuItem;
 
-            if (reg != null)
+            var launchWithWindows = WindowsHelper.ToggleStartup();
+
+            if (launchWithWindows != null)
             {
-                try
-                {
-                    var currentlyEnabledAtStartup = reg.GetValue("SmiteMixerIdler") != null;
-
-                    if (currentlyEnabledAtStartup)
-                    {
-                        reg.DeleteValue("SmiteMixerIdler");
-                        window?.LaunchWithWindows.Dispatcher.BeginInvoke((Action)(() => window.LaunchWithWindows.Text = "False"));
-                        //x?.ShowBalloonTip("Smite Mixer Idler", "Smite Mixer Idler will not launch with Windows.", BalloonIcon.Info);
-                    }
-                    else
-                    {
-                        reg.SetValue("SmiteMixerIdler", System.Reflection.Assembly.GetExecutingAssembly().Location);
-                        window?.LaunchWithWindows.Dispatcher.BeginInvoke((Action)(() => window.LaunchWithWindows.Text = "True"));
-                        //x?.ShowBalloonTip("Smite Mixer Idler", "Smite Mixer Idler will launch with Windows.", BalloonIcon.Info);
-                    }
-                }
-                catch
-                {
-                    x?.ShowBalloonTip("Smite Mixer Idler", "Failed to Get current launch with Windows parameter from Registry.", BalloonIcon.Error);
-                }
+                UiHelper.UpdateUiAndTaskbarIcon(mainWindow, menuitem, (bool)launchWithWindows);
             }
             else
             {
-                x?.ShowBalloonTip("Smite Mixer Idler", "Couldn't access user registry.", BalloonIcon.Error);
+                mainIcon?.ShowBalloonTip("Smite Mixer Idler", "An error occurred when trying to interact with the registry, unable to set launch with windows setting.", BalloonIcon.Info);
             }
         }
     }
