@@ -99,12 +99,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ChatMessage.cs" />
-    <Compile Include="ChatUser.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\ExitSmiteMixerIdler.cs" />
     <Compile Include="Commands\HideWindowCommand.cs" />
     <Compile Include="Commands\ShowWindowCommand.cs" />
+    <Compile Include="Commands\ToggleStartup.cs" />
+    <Compile Include="Helpers\UiHelper.cs" />
+    <Compile Include="Helpers\WindowsHelper.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -150,6 +151,7 @@
       <Name>Mixer.Base</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

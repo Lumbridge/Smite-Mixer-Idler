@@ -7,7 +7,7 @@
         xmlns:tb="http://www.hardcodet.net/taskbar"
         xmlns:commands="clr-namespace:Smite.Mixer.Idler.Commands"
         mc:Ignorable="d"
-        Title="Smite Mixer Idler" Height="200" Width="500">
+        Title="Smite Mixer Idler" Height="220" Width="500">
     <Grid>
         <tb:TaskbarIcon x:Name="MainIcon"
                         ToolTipText="Smite Mixer Idler">
@@ -15,6 +15,10 @@
             <!-- the data context of the context menu is the NotifyIcon itself (see more about this in DataBinding samples) -->
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu>
+                    <MenuItem Header="_Start Smite Mixer Idler with Windows"
+                              Command="{commands:ToggleStartup}"
+                              CommandParameter="{Binding}">
+                    </MenuItem>
                     <MenuItem Header="_Exit Smite Mixer Idler"
                               Command="{commands:ExitSmiteMixerIdler}">
                     </MenuItem>
@@ -22,13 +26,11 @@
             </tb:TaskbarIcon.ContextMenu>
         </tb:TaskbarIcon>
 
-
-        <Grid x:Name="LoginGrid" Visibility="Collapsed">
+        <Grid x:Name="LoginGrid" Visibility="Visible">
             <Button x:Name="LoginButton" Click="LoginButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60">Login</Button>
-            <Label Content="Please login and allow permissions." HorizontalAlignment="Center" Margin="295,244,293,0" VerticalAlignment="Top" Width="204"/>
         </Grid>
 
-        <Grid x:Name="MainGrid" Visibility="Visible">
+        <Grid x:Name="MainGrid" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -42,6 +44,8 @@
 
                 <Grid Grid.Column="0">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="10" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="10" />
                         <RowDefinition Height="Auto" />
@@ -72,9 +76,11 @@
 
                     <TextBlock Grid.Column="0" Grid.Row="8">Stream is Live:</TextBlock>
                     <TextBlock Grid.Column="2" Grid.Row="8" x:Name="StreamStatus" />
+
+                    <TextBlock Grid.Column="0" Grid.Row="10">Launch with Windows:</TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="10" x:Name="LaunchWithWindows" />
                 </Grid>
             </Grid>
-
         </Grid>
     </Grid>
 </Window>
