@@ -1,3 +1,3 @@
 # Smite-Mixer-Idler
 
-### Visit https://lumbridge.org/SmiteMixerIdler for more information.
+### Download from https://github.com/Lumbridge/Smite-Mixer-Idler/releases.
